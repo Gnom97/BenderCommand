@@ -3,10 +3,11 @@ from getopt import getopt, GetoptError
 from serial import Serial, SerialException
 from BlueCommand import blue
 from ModeAutoCommand import modeAuto
+from ModeManCommand import modeMan
 
 import sys
 
-commands = {"blue" : blue, "modeauto" : modeAuto}
+commands = {"blue" : blue, "modeauto" : modeAuto, "modeman" : modeMan}
 
 class Main: 
 	def __init__(self):
