@@ -1,6 +1,8 @@
 # BenderCommand
-Benötigte Bibliothek: https://github.com/pyserial/pyserial
-Achtet darauf, dass pyserial für Python3 und nicht Python2 installiert wird.
+Benötigte Bibliotheken: 
+https://github.com/pyserial/pyserial
+https://github.com/boppreh/keyboard
+Achtet darauf, dass die Module für Python3 und nicht Python2 installiert werden.
 
 Aufbau eines Kommandos:
 	command(connection, commandStr, answerSize)
