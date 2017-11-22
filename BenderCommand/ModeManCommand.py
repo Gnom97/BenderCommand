@@ -29,7 +29,7 @@ def modeMan(connection):
 			inputStr += right
 		if keyboard.is_pressed(left):
 			inputStr += left
-		if keyboard_is_pressed(stop):
+		if keyboard.is_pressed(stop):
 			break
 
 		inputStr += '\n'
