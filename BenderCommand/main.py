@@ -74,12 +74,16 @@ class Main:
 
 			if command == "exit":
 				break
-
-			commandFunc = commands[command]
-			if commandFunc == None:
+		
+			#Finden des Kommandos in der Dictionary commands	
+			try:
+				commandFunc = commands[command]
+			except KeyError:
 				print("main: Angegebenes Kommando existiert nicht. Überprüfe ob die Funktion in der Map commands (main.py) gesetzt wurde")
-			else:
-				commandFunc(self.connection)
+				continue
+	
+			#Ausführen des Kommandos
+			commandFunc(self.connection)
 
 		self.connection.close()
 	#-----------------------------------------------------------------------------------
