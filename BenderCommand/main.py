@@ -7,7 +7,11 @@ from ModeManCommand import modeMan
 
 import sys
 
-commands = {"blue" : blue, "modeauto" : modeAuto, "modeman" : modeMan}
+commands = {
+	"blue" : blue,
+	"modeauto" : modeAuto,
+	"modeman" : modeMan
+}
 
 class Main: 
 	def __init__(self):
