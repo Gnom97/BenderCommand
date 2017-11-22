@@ -71,9 +71,15 @@ class Main:
 		#Entgegennehmen von Kommandos
 		while True:
 			command = input(">>> ")
+
 			if command == "exit":
 				break
-			commands[command](self.connection)
+
+			commandFunc = commands[command]
+			if commandFunc == None:
+				print("main: Angegebenes Kommando existiert nicht. Überprüfe ob die Funktion in der Map commands (main.py) gesetzt wurde")
+			else:
+				commandFunc(self.connection)
 
 		self.connection.close()
 	#-----------------------------------------------------------------------------------
