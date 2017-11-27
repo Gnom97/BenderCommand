@@ -19,7 +19,7 @@ def command(connection, commandStr, answerSize):
 	answer = None
 	if answerSize == None:
 		answer = connection.readline()
-	else:
+	elif answerSize > 0:
 		answer = connection.read(answerSize)
 
 	return answer
