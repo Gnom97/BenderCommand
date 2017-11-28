@@ -9,7 +9,7 @@ Aufbau eines Kommandos:
 	
 	connection: Objekt, welches die Serielle Verbindung darstellt
 	commandStr: Das Kommando, welches als String über die Verbindung geschickt wird
-	answerSize: Die größe der Antwort des Arduinos in Bytes. Wird None Übergeben, wird bis zum nächsten Newline vom Arduino gelesen
+	answerSize: Die größe der Antwort des Arduinos in Bytes. Wird None Übergeben, wird bis zum nächsten Newline vom Arduino gelesen. Wird 0 oder weniger übergeben, wird gar nicht auf eine Antwort gelesen
 
 	return: liefert die Antwort des Arduinos oder -1 im Fehlerfall
 
