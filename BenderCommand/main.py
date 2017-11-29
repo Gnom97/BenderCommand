@@ -4,13 +4,17 @@ from serial import Serial, SerialException
 from BlueCommand import blue
 from ModeAutoCommand import modeAuto
 from ModeManCommand import modeMan
+from ExitCommand import exit
+from HelpCommand import helpFunc
 
 import sys
 
 commands = {
 	"blue" : blue,
 	"modeauto" : modeAuto,
-	"modeman" : modeMan
+	"modeman" : modeMan,
+	"exit" : exit,
+	"help" : helpFunc
 }
 
 class Main: 
@@ -78,9 +82,6 @@ class Main:
 		while True:
 			command = input(">>> ")
 
-			if command == "exit":
-				break
-		
 			#Finden des Kommandos in der Dictionary commands	
 			try:
 				commandFunc = commands[command]
@@ -90,8 +91,6 @@ class Main:
 	
 			#Ausführen des Kommandos
 			commandFunc(self.connection)
-
-		self.connection.close()
 	#-----------------------------------------------------------------------------------
 
 m = Main()
