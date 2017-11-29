@@ -5,3 +5,4 @@ def helpFunc(connection):
 	print("modeauto\tWechseln in den Automatischen Modus")
 	print("modeman\tWechseln in den Manuellen Modus")
 	print("exit\tBeenden des Programmes")
+	print("stop\tWechseln in den Defaultmodus")

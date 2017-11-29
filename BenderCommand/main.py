@@ -6,6 +6,7 @@ from ModeAutoCommand import modeAuto
 from ModeManCommand import modeMan
 from ExitCommand import exit
 from HelpCommand import helpFunc
+from StopCommand import stop
 
 import sys
 
@@ -14,6 +15,7 @@ commands = {
 	"modeauto" : modeAuto,
 	"modeman" : modeMan,
 	"exit" : exit,
+	"stop" : stop,
 	"help" : helpFunc
 }
 
