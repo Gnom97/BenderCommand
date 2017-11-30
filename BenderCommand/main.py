@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 import sys
-
-from commands.BlueCommand import blue
-from commands.ExitCommand import exit_func
-from commands.HelpCommand import help_func
-from commands.ModeAutoCommand import mode_auto
-from commands.ModeManCommand import mode_man
-from commands.StopCommand import stop
 from getopt import GetoptError, getopt
 
 from serial import Serial, SerialException
 
-import server.server
+from BenderCommand.commands.BlueCommand import blue
+from BenderCommand.commands.ExitCommand import exit_func
+from BenderCommand.commands.HelpCommand import help_func
+from BenderCommand.commands.ModeAutoCommand import mode_auto
+from BenderCommand.commands.ModeManCommand import mode_man
+from BenderCommand.commands.StopCommand import stop
+from BenderCommand.server.server import Server
+
 
 class Main(object):
     def __init__(self):
@@ -21,6 +21,8 @@ class Main(object):
         self.baudrate = 0
         #Das Objekt mit für die serielle Verbindung
         self.connection = None
+        #Ob die Anwendung mit einem Server oder der Kommandozeile läuft
+        self.server_flag = False
         #Dictionary aller Kommandos
         self.commandsdict = {
             "blue" : blue,
@@ -35,7 +37,7 @@ class Main(object):
         #Optionen
         #p - Portname - Wert muss angegeben werden
         #b - Bautrate - Wert muss angegeben werden
-        short_options = "p:b:"
+        short_options = "p:b:w"
 
         #Parsen der Übergabeoptionen
         try:
@@ -54,6 +56,8 @@ class Main(object):
                 self.baudrate = int(val)
             elif opt == "-h":
                 print("Parameter: -p Portname -b Bautrate")
+            elif opt == "-w":
+                self.server_flag = True
             else:
                 print("Unbekannte Option: " + opt)
 
@@ -63,7 +67,6 @@ class Main(object):
 
         if self.baudrate is None:
             sys.exit("Die Option für die Baudrate wurde nicht übergeben (-b)")
-	#-----------------------------------------------------------------------------------
 
     def open_connection(self):
         #Öffnen der seriellen Verbindung
@@ -73,12 +76,18 @@ class Main(object):
             sys.exit(err)
 
         print(self.connection.name)
-	#-----------------------------------------------------------------------------------
 
     def main(self):
         self.parse_options()
         self.open_connection()
 
+        if self.server_flag is True:
+            ser_obj = Server(self.commandsdict)
+            ser_obj.run()
+        else:
+            self.commandline()
+
+    def commandline(self):
         #Speichert das aktuelle Kommando als Bytearray
         command = None
         #Entgegennehmen von Kommandos
@@ -93,7 +102,6 @@ class Main(object):
 
             #Ausführen des Kommandos
             command_func(self.connection)
-	#-----------------------------------------------------------------------------------
 
 M_OBJ = Main()
 M_OBJ.main()
