@@ -1,26 +1,25 @@
-from serial import Serial, SerialException
+# -*- coding: utf-8 -*-
 
-def command(connection, commandStr, answerSize):
-	#Ob gültige Parameter gesetzt sind
-	if connection == None:
-		print("command: connection ist None")
-		return -1
-	if commandStr == None or len(commandStr) == 0:
-		print("command: commandStr ist None")
-		return -1
+def command(connection, command_str, answer_size):
+    #Ob gültige Parameter gesetzt sind
+    if connection is None:
+        print("command: connection ist None")
+        return -1
+    if command_str is None or len(command_str) == 0:
+        print("command: commandStr ist None")
+        return -1
 
-	#Schreiben der Nachricht
-	byteCount = connection.write(commandStr)
-	#Überprüfung ob genug Bytes geschickt wurden
-	if byteCount < len(commandStr):
-		print("command: Es konnten nicht alle Bytes geschrieben")
+    #Schreiben der Nachricht
+    byte_count = connection.write(command_str)
+    #Überprüfung ob genug Bytes geschickt wurden
+    if byte_count < len(command_str):
+        print("command: Es konnten nicht alle Bytes geschrieben")
 
-	#Lesen der Antwort
-	answer = None
-	if answerSize == None:
-		answer = connection.readline()
-	elif answerSize > 0:
-		answer = connection.read(answerSize)
+    #Lesen der Antwort
+    answer = None
+    if answer_size is None:
+        answer = connection.readline()
+    elif answer_size > 0:
+        answer = connection.read(answer_size)
 
-	return answer
-	
+    return answer

@@ -2,47 +2,47 @@
 from commands.Command import command
 import keyboard
 
-forward = 'w'
-backward = 's'
-left = 'a'
-right = 'd'
-stop = 'esc'
+FORWARD = 'w'
+BACKWARD = 's'
+LEFT = 'a'
+RIGHT = 'd'
+STOP = 'esc'
 
-forwardNewline = 'w\n'
-backwardNewline = 's\n'
-leftNewline = 'a\n'
-rightNewline = 'd\n'
+FORWARD_NEWLINE = 'w\n'
+BACKWARD_NEWLINE = 's\n'
+LEFT_NEWLINE = 'a\n'
+RIGHT_NEWLINE = 'd\n'
 
-forward_byte = forwardNewline.encode("UTF-8")
-backward_byte = backwardNewline.encode("UTF-8")
-left_byte = leftNewline.encode("UTF-8")
-right_byte = rightNewline.encode("UTF-8")
+FORWARD_BYTE = FORWARD_NEWLINE.encode("UTF-8")
+BACKWARD_BYTE = BACKWARD_NEWLINE.encode("UTF-8")
+LEFT_BYTE = LEFT_NEWLINE.encode("UTF-8")
+RIGHT_BYTE = RIGHT_NEWLINE.encode("UTF-8")
 
-def modeMan(connection):
-	answer = command(connection, b'man\n', None)
-	answer = int(answer)
-	print(answer)
+def mode_man(connection):
+    answer = command(connection, b'man\n', None)
+    answer = int(answer)
+    print(answer)
 
-	if answer == 0:
-		print("Manueller Modus aktiviert")
-	else:
-		print("Manueller Modus wurde nicht aktiviert")
+    if answer == 0:
+        print("Manueller Modus aktiviert")
+    else:
+        print("Manueller Modus wurde nicht aktiviert")
 
-	while True:
-		if keyboard.is_pressed(forward):
-			command(connection, forward_byte, 0)
-			print("gesendet w")
-		elif keyboard.is_pressed(backward):
-			command(connection, backward_byte, 0)
-			print("gesendet s")
-		elif keyboard.is_pressed(right):
-			command(connection, right_byte, 0)
-			print("gesendet d")
-		elif keyboard.is_pressed(left):
-			command(connection, left_byte, 0)
-			print("gesendet a")
-		elif keyboard.is_pressed(stop):
-			print("break")
-			break
-		else:
-			command(connection, b'0\n', 0)
+    while True:
+        if keyboard.is_pressed(FORWARD):
+            command(connection, FORWARD_BYTE, 0)
+            print("gesendet w")
+        elif keyboard.is_pressed(BACKWARD):
+            command(connection, BACKWARD_BYTE, 0)
+            print("gesendet s")
+        elif keyboard.is_pressed(RIGHT):
+            command(connection, RIGHT_BYTE, 0)
+            print("gesendet d")
+        elif keyboard.is_pressed(LEFT):
+            command(connection, LEFT_BYTE, 0)
+            print("gesendet a")
+        elif keyboard.is_pressed(STOP):
+            print("break")
+            break
+        else:
+            command(connection, b'0\n', 0)
