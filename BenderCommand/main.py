@@ -95,6 +95,7 @@ class Main(object):
 
         if self.server_flag is True:
             Server.run()
+            COMMANDS_DICT["exit"](self.connection)
         else:
             self.commandline()
 
