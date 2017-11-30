@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
+"""
+TODO
+"""
 from commands.Command import command
 
 def mode_auto(connection):
+    """
+    TODO
+    """
     answer = command(connection, b'auto\n', None)
     answer = int(answer)
     print(answer)

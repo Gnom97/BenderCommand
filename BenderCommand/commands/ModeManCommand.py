@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+TODO
+"""
 from commands.Command import command
 import keyboard
 
@@ -19,6 +22,9 @@ LEFT_BYTE = LEFT_NEWLINE.encode("UTF-8")
 RIGHT_BYTE = RIGHT_NEWLINE.encode("UTF-8")
 
 def mode_man(connection):
+    """
+    TODO
+    """
     answer = command(connection, b'man\n', None)
     answer = int(answer)
     print(answer)

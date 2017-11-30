@@ -1,20 +1,33 @@
 # -*- coding: utf-8 -*-
+"""
+Main Modul
+TODO
+"""
 import sys
+from commands.BlueCommand import blue
+from commands.ExitCommand import exit_func
+from commands.HelpCommand import help_func
+from commands.ModeAutoCommand import mode_auto
+from commands.ModeManCommand import mode_man
+from commands.StopCommand import stop
 from getopt import GetoptError, getopt
 
 from serial import Serial, SerialException
 
-from BenderCommand.commands.BlueCommand import blue
-from BenderCommand.commands.ExitCommand import exit_func
-from BenderCommand.commands.HelpCommand import help_func
-from BenderCommand.commands.ModeAutoCommand import mode_auto
-from BenderCommand.commands.ModeManCommand import mode_man
-from BenderCommand.commands.StopCommand import stop
-from BenderCommand.server.server import Server
+from server.server import Server
 
 
 class Main(object):
+    """
+    Main Klasse
+    TODO
+    """
+
     def __init__(self):
+        """
+        Konstruktor
+        TODO
+        """
         #Der serielle Port an den das Kommando geht
         self.port = None
         #Ubertragungsgeschwindigkeit in bits pro sekunde
@@ -34,6 +47,10 @@ class Main(object):
         }
 
     def parse_options(self):
+        """
+        parse methode
+        TODO
+        """
         #Optionen
         #p - Portname - Wert muss angegeben werden
         #b - Bautrate - Wert muss angegeben werden
@@ -42,6 +59,9 @@ class Main(object):
         #Parsen der Übergabeoptionen
         try:
             opts, args = getopt(sys.argv[1:], short_options)
+            print("Überflüssige Argumente: ")
+            for arg in args:
+                print(arg)
         except GetoptError as err:
             print(err)
             sys.exit()
@@ -69,6 +89,9 @@ class Main(object):
             sys.exit("Die Option für die Baudrate wurde nicht übergeben (-b)")
 
     def open_connection(self):
+        """
+        TODO
+        """
         #Öffnen der seriellen Verbindung
         try:
             self.connection = Serial(self.port, self.baudrate)
@@ -78,6 +101,9 @@ class Main(object):
         print(self.connection.name)
 
     def main(self):
+        """
+        TODO
+        """
         self.parse_options()
         self.open_connection()
 
@@ -88,6 +114,9 @@ class Main(object):
             self.commandline()
 
     def commandline(self):
+        """
+        TODO
+        """
         #Speichert das aktuelle Kommando als Bytearray
         command = None
         #Entgegennehmen von Kommandos

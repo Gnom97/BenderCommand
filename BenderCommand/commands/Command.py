@@ -1,11 +1,17 @@
 # -*- coding: utf-8 -*-
+"""
+TODO
+"""
 
 def command(connection, command_str, answer_size):
+    """
+    TODO
+    """
     #Ob gültige Parameter gesetzt sind
     if connection is None:
         print("command: connection ist None")
         return -1
-    if command_str is None or len(command_str) == 0:
+    if command_str is None or not command_str: #not command_str -> len(command_str) == 0
         print("command: commandStr ist None")
         return -1
 
