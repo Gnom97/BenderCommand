@@ -4,14 +4,8 @@ Main Modul
 TODO
 """
 import sys
-from commands.BlueCommand import blue
-from commands.ExitCommand import exit_func
-from commands.HelpCommand import help_func
-from commands.ModeAutoCommand import mode_auto
-from commands.ModeManCommand import mode_man
-from commands.StopCommand import stop
 from getopt import GetoptError, getopt
-
+from commands.commanddict import COMMANDS_DICT
 from serial import Serial, SerialException
 
 from server.server import Server
@@ -36,15 +30,6 @@ class Main(object):
         self.connection = None
         #Ob die Anwendung mit einem Server oder der Kommandozeile läuft
         self.server_flag = False
-        #Dictionary aller Kommandos
-        self.commandsdict = {
-            "blue" : blue,
-            "modeauto" : mode_auto,
-            "modeman" : mode_man,
-            "exit" : exit_func,
-            "stop" : stop,
-            "help" : help_func
-        }
 
     def parse_options(self):
         """
@@ -108,7 +93,7 @@ class Main(object):
         self.open_connection()
 
         if self.server_flag is True:
-            ser_obj = Server(self.commandsdict)
+            ser_obj = Server()
             ser_obj.run()
         else:
             self.commandline()
@@ -124,7 +109,7 @@ class Main(object):
             command = input(">>> ")
             #Finden des Kommandos in der Dictionary commands
             try:
-                command_func = self.commandsdict[command]
+                command_func = COMMANDS_DICT[command]
             except KeyError:
                 print("main: Angegebenes Kommando existiert nicht")
                 continue
