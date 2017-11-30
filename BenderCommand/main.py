@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from getopt import getopt, GetoptError
 from serial import Serial, SerialException
-from BlueCommand import blue
-from ModeAutoCommand import modeAuto
-from ModeManCommand import modeMan
-from ExitCommand import exit
-from HelpCommand import helpFunc
-from StopCommand import stop
+from commands.BlueCommand import blue
+from commands.ModeAutoCommand import modeAuto
+from commands.ModeManCommand import modeMan
+from commands.ExitCommand import exit
+from commands.HelpCommand import helpFunc
+from commands.StopCommand import stop
 
 import sys
 

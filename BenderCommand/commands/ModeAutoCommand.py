@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from Command import command
+from commands.Command import command
 
 def modeAuto(connection):
 	answer = command(connection, b'auto\n', None)
