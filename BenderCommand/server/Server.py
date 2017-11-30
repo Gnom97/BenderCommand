@@ -14,4 +14,7 @@ def run(server_class=HTTPServer, handler_class=MyRequestHander, domain="", port=
     server_address = (domain, port)
     http_server = server_class(server_address, handler_class)
     print("HTTP Server startet")
-    http_server.serve_forever()
+    try:
+        http_server.serve_forever()
+    except KeyboardInterrupt:
+        http_server.server_close()
