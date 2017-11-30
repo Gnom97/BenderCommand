@@ -3,12 +3,13 @@
 TODO
 """
 import sys
+from connection.Connection import Connection
 
 def exit_func(connection):
     """
     TODO
     """
-    connection.close()
+    Connection.close_connection()
     print("Serielle Verbindung geschlossen")
     print("Programm schließt sich")
     sys.exit(0)

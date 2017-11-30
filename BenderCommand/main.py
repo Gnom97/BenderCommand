@@ -4,12 +4,11 @@ Main Modul
 TODO
 """
 import sys
-from commands.commanddict import COMMANDS_DICT
 from getopt import GetoptError, getopt
-
-from serial import Serial, SerialException
+from commandline.Commandline import commandline
 
 import server.Server as Server
+from connection.Connection import Connection
 
 
 class Main(object):
@@ -27,8 +26,6 @@ class Main(object):
         self.port = None
         #Ubertragungsgeschwindigkeit in bits pro sekunde
         self.baudrate = 0
-        #Das Objekt mit für die serielle Verbindung
-        self.connection = None
         #Ob die Anwendung mit einem Server oder der Kommandozeile läuft
         self.server_flag = False
 
@@ -74,49 +71,19 @@ class Main(object):
         if self.baudrate is None:
             sys.exit("Die Option für die Baudrate wurde nicht übergeben (-b)")
 
-    def open_connection(self):
-        """
-        TODO
-        """
-        #Öffnen der seriellen Verbindung
-        try:
-            self.connection = Serial(self.port, self.baudrate)
-        except SerialException as err:
-            sys.exit(err)
 
-        print(self.connection.name)
 
     def main(self):
         """
         TODO
         """
         self.parse_options()
-        self.open_connection()
+        Connection.open_connection(self.port, self.baudrate)
 
         if self.server_flag is True:
             Server.run()
-            COMMANDS_DICT["exit"](self.connection)
         else:
-            self.commandline()
-
-    def commandline(self):
-        """
-        TODO
-        """
-        #Speichert das aktuelle Kommando als Bytearray
-        command = None
-        #Entgegennehmen von Kommandos
-        while True:
-            command = input(">>> ")
-            #Finden des Kommandos in der Dictionary commands
-            try:
-                command_func = COMMANDS_DICT[command]
-            except KeyError:
-                print("main: Angegebenes Kommando existiert nicht")
-                continue
-
-            #Ausführen des Kommandos
-            command_func(self.connection)
+            commandline()
 
 M_OBJ = Main()
 M_OBJ.main()
