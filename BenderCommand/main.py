@@ -4,11 +4,12 @@ Main Modul
 TODO
 """
 import sys
-from getopt import GetoptError, getopt
 from commands.commanddict import COMMANDS_DICT
+from getopt import GetoptError, getopt
+
 from serial import Serial, SerialException
 
-from server.server import Server
+import server.Server as Server
 
 
 class Main(object):
@@ -93,8 +94,7 @@ class Main(object):
         self.open_connection()
 
         if self.server_flag is True:
-            ser_obj = Server()
-            ser_obj.run()
+            Server.run()
         else:
             self.commandline()
 
