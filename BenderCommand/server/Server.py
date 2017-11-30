@@ -4,10 +4,10 @@ TODO
 """
 from http.server import HTTPServer #pylint: disable=E0401
 
-from server.MyRequestHandler import MyRequestHander
+from server.MyRequestHandler import MyRequestHandler
 
 
-def run(server_class=HTTPServer, handler_class=MyRequestHander, domain="", port=80):
+def run(server_class=HTTPServer, handler_class=MyRequestHandler, domain="", port=80):
     """
     TODO
     """
