@@ -2,7 +2,7 @@
 """
 TODO
 """
-from http.server import HTTPServer
+from http.server import HTTPServer #pylint: disable=E0401
 
 from server.MyRequestHandler import MyRequestHander
 

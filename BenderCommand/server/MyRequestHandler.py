@@ -2,7 +2,7 @@
 """
 TODO
 """
-from http.server import BaseHTTPRequestHandler
+from http.server import BaseHTTPRequestHandler #pylint: disable=E0401
 from commands.commanddict import COMMANDS_DICT
 
 class MyRequestHander(BaseHTTPRequestHandler):
@@ -10,13 +10,13 @@ class MyRequestHander(BaseHTTPRequestHandler):
     TODO
     """
 
-    def do_GET(self):
+    def do_GET(self): #pylint: disable=C0103
         """
         TODO
         """
         print("Request empfangen")
 
-    def do_POST(self):
+    def do_POST(self): #pylint: disable=C0103
         """
         TODO
         """

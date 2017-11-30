@@ -3,7 +3,7 @@
 TODO
 """
 from commands.Command import command
-import keyboard
+import keyboard #pylint: disable=E0401
 
 FORWARD = 'w'
 BACKWARD = 's'
