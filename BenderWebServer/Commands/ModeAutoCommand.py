@@ -3,16 +3,15 @@
 TODO
 """
 from Commands.Command import command
+from Commands.Returncodes import TIMEOUT
 
-def mode_auto(connection):
+def mode_auto_cmd(connection):
     """
     TODO
     """
     answer = command(connection, b'auto\n', None)
-    answer = int(answer)
-    print(answer)
 
-    if answer == 0:
-        return "Automatischer Modus aktiviert"
-    else:
-        return "Automatischer Modus wurde nicht aktiviert"
+    if answer == b'':
+        answer = TIMEOUT
+
+    return str(answer)
