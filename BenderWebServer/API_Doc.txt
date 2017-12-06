@@ -1,0 +1,73 @@
+Funktion index()
+    Ruft die Startseite auf
+    URL: "/"
+    HTTP Verb: GET
+    Rückgabe: Dokument 
+        HTML Dokument ./templates/index.html
+
+Funktion auto()
+    Lässt Bender in den Automatikmodus wechseln
+    URL: "/auto"
+    HTTP Verb: GET
+    Rückgabe: String
+        "-2" - Timeout beim Lesen oder Schreiben mit Bender
+        "0" - Bei Erfolg
+        "-1" - Bei Fehler bei Bender
+
+Funktion default()
+    Lässt Bender in den Defaultmodus wechseln
+    URL: "/default"
+    HTTP Verb: GET
+    Rückgabe: String
+        "-2" - Timeout beim Lesen oder Schreiben mit Bender
+        "0" - Bei Erfolg
+        "-1" - Bei Fehler bei Bender
+
+Funktion man()
+    Lässt Bender in den Manuellenmodus wechseln
+    URL: "/man"
+    HTTP Verb: GET
+    Rückgabe: String
+        "-2" - Timeout beim Lesen oder Schreiben mit Bender
+        "0" - Bei Erfolg
+        "-1" - Bei Fehler bei Bender
+
+Funktion forward()
+    Lässt Bender im Manuellenmodus vorwärts fahren
+    URL: "/forward"
+    HTTP Verb: GET
+    Rückgabe: String
+        "-2" - Timeout beim Lesen oder Schreiben mit Bender
+        "0" - Bei Erfolg
+
+Funktion backward()
+    Lässt Bender im Manuellenmodus rückwärts fahren
+    URL: "/backward"
+    HTTP Verb: GET
+    Rückgabe: String
+        "-2" - Timeout beim Lesen oder Schreiben mit Bender
+        "0" - Bei Erfolg
+
+Funktion left()
+    Lässt Bender im Manuellenmodus links fahren
+    URL: "/left"
+    HTTP Verb: GET
+    Rückgabe: String
+        "-2" - Timeout beim Lesen oder Schreiben mit Bender
+        "0" - Bei Erfolg
+
+Funktion right()
+    Lässt Bender im Manuellenmodus rückwärts fahren
+    URL: "/right"
+    HTTP Verb: GET
+    Rückgabe: String
+        "-2" - Timeout beim Lesen oder Schreiben mit Bender
+        "0" - Bei Erfolg
+
+Funktion stop()
+    Lässt Bender im Manuellenmodus anhalten
+    URL: "/stop"
+    HTTP Verb: GET
+    Rückgabe: String
+        "-2" - Timeout beim Lesen oder Schreiben mit Bender
+        "0" - Bei Erfolg
