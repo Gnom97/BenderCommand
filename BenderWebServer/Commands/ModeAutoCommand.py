@@ -3,7 +3,6 @@
 TODO
 """
 from Commands.Command import command
-from Connections.Connection import Connection
 
 def mode_auto(connection):
     """
