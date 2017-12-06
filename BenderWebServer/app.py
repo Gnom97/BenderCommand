@@ -1,26 +1,93 @@
 # -*- coding: utf-8 -*-
-from flask import Flask
+import sys
+
+from flask import Flask, render_template
+
+from Commands.ModeAutoCommand import mode_auto_cmd
+from Commands.ModeDefaultCommand import mode_default_cmd
+from Commands.ModeManCommand import mode_man_cmd
+from Commands.ForwardCommand import forward_cmd
+from Commands.BackwardCommand import backward_cmd
+from Commands.LeftCommand import left_cmd
+from Commands.RightCommand import right_cmd
+from Commands.StopCommand import stop_cmd
 from Connections.Connection import Connection
-from Commands.ModeAutoCommand import mode_auto
-from Commands.StopCommand import stop
+from OptionParser import parse_options
 
-app = Flask(__name__)
-Connection.open_connection('/dev/ttyUSB0', 115200)
+APP = Flask(__name__)
 
-@app.route("/")
+BENDER_PORT, BAUDRATE = parse_options(sys.argv[1:])
+
+Connection.open_connection(BENDER_PORT, BAUDRATE)
+
+@APP.route("/")
 def index():
-    return "Hallo Welt"
+    """
+    Ruft die Startseite auf
+    """
+    return render_template("index.html")
 
-@app.route("/auto")
+#Wechseln zwischen den Modi von Bender
+@APP.route("/auto")
 def auto():
-    return mode_auto(Connection.connection)
+    """
+    Lässt Bender in den Automatikmodus wechseln
+    """
+    return mode_auto_cmd(Connection.connection)
 
-@app.route("/stop")
-def halt():
-    return stop(Connection.connection)
+@APP.route("/default")
+def defaul():
+    """
+    Lässt Bender in den Defaultmodus wechseln
+    """
+    return mode_default_cmd(Connection.connection)
 
-if __name__ == '__main__':
-    app.run(debug=True, host="127.0.0.1")
+@APP.route("/man")
+def man():
+    """
+    Lässt Bender in den Manuellenmodus wechseln
+    """
+    return mode_man_cmd(Connection.connection)
 
+#Befehle für den Manuellen Modus
+@APP.route("/forward")
+def forward():
+    """
+    Lässt Bender im Manuellenmodus vorwärts fahren"
+    """
+    return forward_cmd(Connection.connection)
+
+@APP.route("/backward")
+def backward():
+    """
+    Lässt Bender im Manuellenmodus rückwärts fahren"
+    """
+    return backward_cmd(Connection.connection)
+
+@APP.route("/left")
+def left():
+    """
+    Lässt Bender im Manuellenmodus links fahren"
+    """
+    return left_cmd(Connection.connection)
+
+@APP.route("/right")
+def right():
+    """
+    Lässt Bender im Manuellenmodus rechts fahren"
+    """
+    return right_cmd(Connection.connection)
+
+@APP.route("/stop")
+def stop():
+    """
+    Lässt Bender im Manuellenmodus anhalten"
+    """
+    return stop_cmd(Connection.connection)
+
+#Starten des WebServers
+APP.run(debug=True, host="127.0.0.1")
+
+#Schließen der Verbindung zu Bender
 Connection.close_connection()
 print("Connection geschlossen")
