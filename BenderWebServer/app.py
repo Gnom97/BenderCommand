@@ -36,7 +36,7 @@ def auto():
     return mode_auto_cmd(Connection.connection)
 
 @APP.route("/default")
-def defaul():
+def default():
     """
     Lässt Bender in den Defaultmodus wechseln
     """
