@@ -20,7 +20,7 @@ class Connection(object):
             print("Ein Verbindung ist bereits offen, schließe diese zuerst")
         else:
             try:
-                Connection.connection = Serial(port, baudrate)
+                Connection.connection = Serial(port, baudrate, timeout=1, write_timeout=1)
             except SerialException as err:
                 sys.exit(err)
 
