@@ -6,8 +6,6 @@ TODO
 import sys
 from getopt import GetoptError, getopt
 from commandline.Commandline import commandline
-
-import server.Server as Server
 from connection.Connection import Connection
 
 
@@ -26,8 +24,6 @@ class Main(object):
         self.port = None
         #Ubertragungsgeschwindigkeit in bits pro sekunde
         self.baudrate = 0
-        #Ob die Anwendung mit einem Server oder der Kommandozeile läuft
-        self.server_flag = False
 
     def parse_options(self):
         """
@@ -37,7 +33,7 @@ class Main(object):
         #Optionen
         #p - Portname - Wert muss angegeben werden
         #b - Bautrate - Wert muss angegeben werden
-        short_options = "p:b:w"
+        short_options = "p:b:"
 
         #Parsen der Übergabeoptionen
         try:
@@ -59,8 +55,6 @@ class Main(object):
                 self.baudrate = int(val)
             elif opt == "-h":
                 print("Parameter: -p Portname -b Bautrate")
-            elif opt == "-w":
-                self.server_flag = True
             else:
                 print("Unbekannte Option: " + opt)
 
@@ -80,10 +74,7 @@ class Main(object):
         self.parse_options()
         Connection.open_connection(self.port, self.baudrate)
 
-        if self.server_flag is True:
-            Server.run()
-        else:
-            commandline()
+        commandline()
 
 M_OBJ = Main()
 M_OBJ.main()
