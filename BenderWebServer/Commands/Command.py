@@ -2,6 +2,8 @@
 """
 TODO
 """
+from serial import SerialTimeoutException
+from Commands.Returncodes import TIMEOUT
 
 def command(connection, command_str, answer_size):
     """
@@ -16,10 +18,13 @@ def command(connection, command_str, answer_size):
         return -1
 
     #Schreiben der Nachricht
-    byte_count = connection.write(command_str)
+    try:
+        byte_count = connection.write(command_str)
     #Überprüfung ob genug Bytes geschickt wurden
-    if byte_count < len(command_str):
-        print("command: Es konnten nicht alle Bytes geschrieben")
+        if byte_count < len(command_str):
+            print("command: Es konnten nicht alle Bytes geschrieben")
+    except SerialTimeoutException:
+        return TIMEOUT
 
     #Lesen der Antwort
     answer = None
