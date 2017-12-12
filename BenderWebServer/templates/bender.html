@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body onload="startGame()">
+        <script>
+            response = str();
+
+            function AutoMode() {
+                document.getElementById("response").innerHTML = "No response yet";
+
+                xhttp.open("GET", "/auto", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send();
+                var response = JSON.parse(xhttp.responseText);
+
+                if(response == 0) {
+                    document.getElementById("response").innerHTML = "Erfolg: Auto Mode";
+                } else if (response == -2) {
+                    document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                } else if (response == -1) {
+                    document.getElementById("response").innerHTML = "Bei Fehler bei Bender";
+                }
+            }
+
+            function Default() {
+                document.getElementById("response").innerHTML = "No response yet";
+
+                xhttp.open("GET", "/default", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send();
+                var response = JSON.parse(xhttp.responseText);
+
+                if(response == 0) {
+                    document.getElementById("response").innerHTML = "Erfolg: Default Mode";
+                } else if (response == -2) {
+                    document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                } else if (response == -1) {
+                    document.getElementById("response").innerHTML = "Bei Fehler bei Bender";
+                }
+            }
+
+            function Man() {
+                document.getElementById("response").innerHTML = "No response yet";
+
+                xhttp.open("GET", "/man", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send();
+                var response = JSON.parse(xhttp.responseText);
+
+                if(response == 0) {
+                    document.getElementById("response").innerHTML = "Erfolg: Man Mode";
+                } else if (response == -2) {
+                    document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                } else if (response == -1) {
+                    document.getElementById("response").innerHTML = "Bei Fehler bei Bender";
+                }
+            }
+
+            function Forward() {
+                document.getElementById("response").innerHTML = "No response yet";
+
+                xhttp.open("GET", "/forward", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send();
+                var response = JSON.parse(xhttp.responseText);
+
+                if(response == 0) {
+                    document.getElementById("response").innerHTML = "Erfolg: Forward";
+                } else if (response == -2) {
+                    document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                } 
+            }
+
+            function Backward() {
+                document.getElementById("response").innerHTML = "No response yet";
+
+                xhttp.open("GET", "/backward", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send();
+                var response = JSON.parse(xhttp.responseText);
+
+                if(response == 0) {
+                    document.getElementById("response").innerHTML = "Erfolg: Backward";
+                } else if (response == -2) {
+                    document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                } 
+            }
+
+            function Left() {
+                document.getElementById("response").innerHTML = "No response yet";
+
+                xhttp.open("GET", "/left", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send();
+                var response = JSON.parse(xhttp.responseText);
+
+                if(response == 0) {
+                    document.getElementById("response").innerHTML = "Erfolg: Left";
+                } else if (response == -2) {
+                    document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                } 
+            }
+
+            function Right() {
+                document.getElementById("response").innerHTML = "No response yet";
+
+                xhttp.open("GET", "/right", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send();
+                var response = JSON.parse(xhttp.responseText);
+
+                if(response == 0) {
+                    document.getElementById("response").innerHTML = "Erfolg: Right";
+                } else if (response == -2) {
+                    document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                } 
+            }
+
+            function Stop() {
+                document.getElementById("response").innerHTML = "No response yet";
+
+                xhttp.open("GET", "/stop", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send();
+                var response = JSON.parse(xhttp.responseText);
+
+                if(response == 0) {
+                    document.getElementById("response").innerHTML = "Erfolg: Stop";
+                } else if (response == -2) {
+                    document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                } 
+            }
+
+            function Test() {
+                var state = 1;
+                if (state==1) {
+                    document.getElementById("response").innerHTML = response;
+                }
+                if (state==2) {
+                    document.getElementById("response").innerHTML = "22222!";
+                }
+            }
+        </script>
+    <br>
+
+    <p>Setzt Bender in den Auto-modus</p>
+    <button type="submit" onclick="AutoMode()">Auto Mode</button>
+    <button type="submit" onclick="Default()">Default Mode</button>
+    <button type="submit" onclick="Man()">Man Mode</button>
+    <button type="submit" onclick="Forward()">Forward</button>
+    <button type="submit" onclick="Forward()">Backward</button>
+    <button type="submit" onclick="Left()">Left</button>
+    <button type="submit" onclick="Right()">Right</button>
+    <button type="submit" onclick="Stop()">Stop</button>
+
+    <!--button type="submit" onclick="Test()">Test</button-->
+    
+    
+    <p id="response">nothing here yet</p>
+
+    </body>
+</html>
+
