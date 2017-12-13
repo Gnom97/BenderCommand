@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" 
+            type="text/javascript"></script>
+
+            <script>        
+
+                $(document).keydown(function( event ) {
+                    if ( event.which == 65 ) { Left(); }
+                    if ( event.which == 68 ) { Right(); }
+                    if ( event.which == 87 ) { Forward(); }
+                    if ( event.which == 83 ) { Backward(); }
+                });
+
+                $(document).keyup(function( event ) {
+                    //if ( event.which == 65 ) {
+                        Stop();
+                    //}
+                });
+                
+                    function AutoMode() {
+                        jQuery.get( "/auto", function( response ) { 
+                            if(response == "0") {
+                            document.getElementById("response").innerHTML = "Erfolg: Auto Mode";
+                            } else if (response == "-2") {
+                            document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                            } else if (response == "-1") {
+                            document.getElementById("response").innerHTML = "Bei Fehler bei Bender";
+                            }
+                        } );
+                    }
+        
+                    function Default() {
+                        jQuery.get( "/default", function( response ) { 
+                            if(response == "0") {
+                            document.getElementById("response").innerHTML = "Erfolg: Default Mode";
+                            } else if (response == "-2") {
+                            document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                            } else if (response == "-1") {
+                            document.getElementById("response").innerHTML = "Bei Fehler bei Bender";
+                            }
+                        } );
+                    }
+        
+                    function Man() {     
+                        jQuery.get( "/man", function( response ) { 
+                            if(response == "0") {
+                            document.getElementById("response").innerHTML = "Erfolg: Man Mode";
+                            } else if (response == "-2") {
+                            document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                            } else if (response == "-1") {
+                            document.getElementById("response").innerHTML = "Bei Fehler bei Bender";
+                            }
+                        } );
+                    }
+        
+                    function Forward() {
+                        jQuery.get( "/forward", function( response ) { 
+                            if(response == "0") {
+                            document.getElementById("response").innerHTML = "Erfolg: Forward";
+                            } else if (response == "-2") {
+                            document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                            }
+                        } );
+                    }
+        
+                    function Backward() {
+                        jQuery.get( "/backward", function( response ) { 
+                            if(response == "0") {
+                            document.getElementById("response").innerHTML = "Erfolg: Backward";
+                            } else if (response == "-2") {
+                            document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                            }
+                        } );
+                    }
+        
+                    function Left() {
+                        jQuery.get( "/left", function( response ) { 
+                            if(response == "0") {
+                            document.getElementById("response").innerHTML = "Erfolg: Left";
+                            } else if (response == "-2") {
+                            document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                            }
+                        } );
+                    }
+        
+                    function Right() {
+                        jQuery.get( "/right", function( response ) { 
+                            if(response == "0") {
+                            document.getElementById("response").innerHTML = "Erfolg: Right";
+                            } else if (response == "-2") {
+                            document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                            }
+                        } );
+                    }
+        
+                    function Stop() {
+                        jQuery.get( "/stop", function( response ) { 
+                            if(response == "0") {
+                            document.getElementById("response").innerHTML = "Erfolg: Stop";
+                            } else if (response == "-2") {
+                            document.getElementById("response").innerHTML = "Timeout beim Lesen oder Schreiben mit Bender";
+                            }
+                        } );
+                    }
+        
+                   
+                </script>
+    </head>
+
+    <p>Setzt Bender in den Auto-modus</p>
+    <button type="submit" onclick="AutoMode()">Auto Mode</button>
+    <button type="submit" onclick="Default()">Default Mode</button>
+    <button type="submit" onclick="Man()">Man Mode</button>
+    <button type="submit" onclick="Forward()">Forward</button>
+    <button type="submit" onclick="Backward()">Backward</button>
+    <button type="submit" onclick="Left()">Left</button>
+    <button type="submit" onclick="Right()">Right</button>
+    <button type="submit" onclick="Stop()">Stop</button>
+
+    <!--button type="submit" onclick="Test()">Test</button-->
+    
+    
+    <p id="response">nothing here yet</p>
+
+    </body>
+</html>
+
